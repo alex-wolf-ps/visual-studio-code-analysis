@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LoanManager.Core.DataInterface;
+﻿using LoanManager.Core.DataInterface;
 using LoanManager.Core.Domain;
 using LoanManager.Core.Services;
+using LoanManager.RazorPages.Util;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using LoanManager.RazorPages.Util;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LoanManager.RazorPages.Pages.NewLoan
 {
     public class CreateModel : PageModel
     {
-        private loanProcessingService _loanProcessingService;
+        private readonly LoanProcessingService _loanProcessingService;
 
-        private ILoanApplicationResultRepository _resultRepository;
+        private readonly ILoanApplicationResultRepository _resultRepository;
 
-        public CreateModel(loanProcessingService loanProcessingService,  ILoanApplicationResultRepository resultRepository)
+        public CreateModel(LoanProcessingService loanProcessingService, ILoanApplicationResultRepository resultRepository)
         {
             _loanProcessingService = loanProcessingService;
             _resultRepository = resultRepository;
@@ -58,7 +56,7 @@ namespace LoanManager.RazorPages.Pages.NewLoan
 
             LoanApplication.Term = LoanTerm.GetLoanTerm(TermYears);
 
-            var result = _loanProcessingService.ProcessLoan(LoanApplication);
+            LoanApplicationResult result = _loanProcessingService.ProcessLoan(LoanApplication);
             _resultRepository.SaveLoanApplicationResult(result);
 
             return RedirectToPage($"./LoanApplicationResult", new { id = result.ResultId });

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LoanManager.RazorPages.Util
 {
@@ -10,14 +9,14 @@ namespace LoanManager.RazorPages.Util
     {
 
 
-        public static IList<SelectListItem> ToSelectList<T>(this IEnumerable<T> items, 
+        public static IList<SelectListItem> ToSelectList<T>(this IEnumerable<T> items,
             Func<T, String> valueFunc, Func<T, String> textFunc)
         {
             return items.Select(n => new SelectListItem
-             {
-                 Value = valueFunc(n),
-                 Text = textFunc(n)
-             }).ToList();
+            {
+                Value = valueFunc(n),
+                Text = textFunc(n)
+            }).ToList();
         }
 
 

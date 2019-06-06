@@ -1,9 +1,7 @@
 ﻿using LoanManager.Core.DataInterface;
 using LoanManager.Core.Domain;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LoanManager.Data.EFCore
 {
@@ -16,7 +14,7 @@ namespace LoanManager.Data.EFCore
         }
 
 
-        private LoanCalculatorContext _context;
+        private readonly LoanCalculatorContext _context;
 
         public List<LoanApplicationResult> GetLoanApplicationResults()
         {

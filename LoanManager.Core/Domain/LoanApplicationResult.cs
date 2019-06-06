@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LoanManager.Core.Domain
 {
@@ -38,7 +37,7 @@ namespace LoanManager.Core.Domain
         public static LoanApplicationResult CreateDeniedResult(
             LoanApplication application, List<ILoanQualificationRule> failedRules)
         {
-            var failedReasons = string.Join(" ", failedRules.Select(x => x.RuleName));
+            string failedReasons = string.Join(" ", failedRules.Select(x => x.RuleName));
 
             return new LoanApplicationResult()
             {

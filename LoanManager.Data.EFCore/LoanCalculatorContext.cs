@@ -1,8 +1,5 @@
 ﻿using LoanManager.Core.Domain;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LoanManager.Data.EFCore
 {
@@ -70,15 +67,15 @@ namespace LoanManager.Data.EFCore
             );
 
             modelBuilder.Entity<LoanApplicationResult>().HasData(
-                new LoanApplicationResult() { ResultId = 1,  ApplicantType = "Standard", FirstName = "John", LastName = "Smith", AnnualIncome = 75_000, CreditScore = 790, Approved = true, InterestRate = 0.085, LoanAmount = 125_000, MonthlyPayment = 769.65, LoanTerm = 30 },
-                new LoanApplicationResult() { ResultId = 2,  ApplicantType = "Standard", FirstName = "Mary", LastName = "Jones", AnnualIncome = 60_000, CreditScore = 680, Approved = true, InterestRate = 0.075, LoanAmount = 135_000, MonthlyPayment = 934.94, LoanTerm = 30 },
-                new LoanApplicationResult() { ResultId = 4,  ApplicantType = "Standard", FirstName = "Sally", LastName = "Johnson", AnnualIncome = 125_000, CreditScore = 880, Approved = true, InterestRate = 0.05, LoanAmount = 250_000, MonthlyPayment = 1684.61, LoanTerm = 20 },
-                new LoanApplicationResult() { ResultId = 5,  ApplicantType = "Standard", FirstName = "John", LastName = "Test", AnnualIncome = 75_000, CreditScore = 790, Approved = true, InterestRate = 0.075, LoanAmount = 125_000, MonthlyPayment = 769.65, LoanTerm = 30 },
-                new LoanApplicationResult() { ResultId = 6,  ApplicantType = "Standard", FirstName = "Jeff", LastName = "Pral", AnnualIncome = 60_000, CreditScore = 680, Approved = true, InterestRate = 0.0625, LoanAmount = 135_000, MonthlyPayment = 934.94, LoanTerm = 10 },
-                new LoanApplicationResult() { ResultId = 7,  ApplicantType = "Standard", FirstName = "Steve", LastName = "Sun", AnnualIncome = 100_000, CreditScore = 460, Approved = false, DenialReason = "Credit Score", LoanTerm = 30 },
-                new LoanApplicationResult() { ResultId = 8,  ApplicantType = "Premiere", FirstName = "Alan", LastName = "Roll", AnnualIncome = 125_000, CreditScore = 880, Approved = true, InterestRate = 0.175, LoanAmount = 250_000, MonthlyPayment = 1684.61, LoanTerm = 20 },
-                new LoanApplicationResult() { ResultId = 9,  ApplicantType = "Premiere", FirstName = "Bob", LastName = "Stevens", AnnualIncome = 75_000, CreditScore = 790, Approved = true, InterestRate = 0.15, LoanAmount = 25_000, MonthlyPayment = 769.65, LoanTerm = 10 },
-                new LoanApplicationResult() { ResultId = 3,  ApplicantType = "Standard", FirstName = "Andy", LastName = "Anderson", AnnualIncome = 100_000, CreditScore = 460, Approved = false, DenialReason = "Credit Score", LoanTerm = 30 },
+                new LoanApplicationResult() { ResultId = 1, ApplicantType = "Standard", FirstName = "John", LastName = "Smith", AnnualIncome = 75_000, CreditScore = 790, Approved = true, InterestRate = 0.085, LoanAmount = 125_000, MonthlyPayment = 769.65, LoanTerm = 30 },
+                new LoanApplicationResult() { ResultId = 2, ApplicantType = "Standard", FirstName = "Mary", LastName = "Jones", AnnualIncome = 60_000, CreditScore = 680, Approved = true, InterestRate = 0.075, LoanAmount = 135_000, MonthlyPayment = 934.94, LoanTerm = 30 },
+                new LoanApplicationResult() { ResultId = 4, ApplicantType = "Standard", FirstName = "Sally", LastName = "Johnson", AnnualIncome = 125_000, CreditScore = 880, Approved = true, InterestRate = 0.05, LoanAmount = 250_000, MonthlyPayment = 1684.61, LoanTerm = 20 },
+                new LoanApplicationResult() { ResultId = 5, ApplicantType = "Standard", FirstName = "John", LastName = "Test", AnnualIncome = 75_000, CreditScore = 790, Approved = true, InterestRate = 0.075, LoanAmount = 125_000, MonthlyPayment = 769.65, LoanTerm = 30 },
+                new LoanApplicationResult() { ResultId = 6, ApplicantType = "Standard", FirstName = "Jeff", LastName = "Pral", AnnualIncome = 60_000, CreditScore = 680, Approved = true, InterestRate = 0.0625, LoanAmount = 135_000, MonthlyPayment = 934.94, LoanTerm = 10 },
+                new LoanApplicationResult() { ResultId = 7, ApplicantType = "Standard", FirstName = "Steve", LastName = "Sun", AnnualIncome = 100_000, CreditScore = 460, Approved = false, DenialReason = "Credit Score", LoanTerm = 30 },
+                new LoanApplicationResult() { ResultId = 8, ApplicantType = "Premiere", FirstName = "Alan", LastName = "Roll", AnnualIncome = 125_000, CreditScore = 880, Approved = true, InterestRate = 0.175, LoanAmount = 250_000, MonthlyPayment = 1684.61, LoanTerm = 20 },
+                new LoanApplicationResult() { ResultId = 9, ApplicantType = "Premiere", FirstName = "Bob", LastName = "Stevens", AnnualIncome = 75_000, CreditScore = 790, Approved = true, InterestRate = 0.15, LoanAmount = 25_000, MonthlyPayment = 769.65, LoanTerm = 10 },
+                new LoanApplicationResult() { ResultId = 3, ApplicantType = "Standard", FirstName = "Andy", LastName = "Anderson", AnnualIncome = 100_000, CreditScore = 460, Approved = false, DenialReason = "Credit Score", LoanTerm = 30 },
                 new LoanApplicationResult() { ResultId = 10, ApplicantType = "Standard", FirstName = "Phil", LastName = "Tell", AnnualIncome = 60_000, CreditScore = 680, Approved = true, InterestRate = 0.075, LoanAmount = 135_000, MonthlyPayment = 934.94, LoanTerm = 20 },
                 new LoanApplicationResult() { ResultId = 11, ApplicantType = "Standard", FirstName = "Joel", LastName = "Tess", AnnualIncome = 100_000, CreditScore = 406, Approved = false, DenialReason = "Credit Score", LoanTerm = 30 },
                 new LoanApplicationResult() { ResultId = 12, ApplicantType = "Standard", FirstName = "Bob", LastName = "Test", AnnualIncome = 125_000, CreditScore = 880, Approved = true, InterestRate = 0.05, LoanAmount = 250_000, MonthlyPayment = 1684.61, LoanTerm = 20 }
