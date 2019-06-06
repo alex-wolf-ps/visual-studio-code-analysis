@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LoanHelperDemo;
+﻿using LoanHelperDemo;
 using LoanManager.Core.DataInterface;
 using LoanManager.Core.Domain;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LoanManager.RazorPages.Pages
 {
     public class IndexModel : PageModel
     {
-        private IHostingEnvironment _env;
+        private readonly IHostingEnvironment _env;
 
-        private ILoanApplicationResultRepository _loanResultRepository;
+        private readonly ILoanApplicationResultRepository _loanResultRepository;
 
-        private ILoanRateRepository _loanRateRepository;
+        private readonly ILoanRateRepository _loanRateRepository;
 
         public IndexModel(ILoanApplicationResultRepository loanResultRepository, ILoanRateRepository rateRepo, IHostingEnvironment environment)
         {
