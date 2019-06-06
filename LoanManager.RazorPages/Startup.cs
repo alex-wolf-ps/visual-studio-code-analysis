@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using LoanManager.Core.DataInterface;
 using LoanManager.Core.Domain;
 using LoanManager.Core.Services;
@@ -5,10 +9,10 @@ using LoanManager.Data.EFCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace LoanManager.RazorPages
 {
@@ -34,11 +38,11 @@ namespace LoanManager.RazorPages
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            string connectionString = "DataSource=:memory:";
+            var connectionString = "DataSource=:memory:";
             services.ConfigureSqlLiteDatabase(connectionString);
             services.ConfigureRepositories();
 
-            List<ILoanQualificationRule> rules = new List<ILoanQualificationRule>()
+            var rules = new List<ILoanQualificationRule>()
             {
                 new CreditScoreLoanApprovalRule(),
                 new LoanSizeLoanApprovalRule(),
@@ -46,7 +50,7 @@ namespace LoanManager.RazorPages
                 new TermLengthApprovalRule()
             };
             services.AddScoped<List<ILoanQualificationRule>>(provider => rules);
-            services.AddScoped<LoanProcessingService, LoanProcessingService>();
+            services.AddScoped<loanProcessingService, loanProcessingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

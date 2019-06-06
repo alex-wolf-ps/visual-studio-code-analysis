@@ -3,6 +3,8 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace LoanManager.Data.EFCore
 {
@@ -13,7 +15,7 @@ namespace LoanManager.Data.EFCore
         public static void ConfigureSqlLiteDatabase(this IServiceCollection services, String connectionString)
         {
             // Configures the contest
-            SqliteConnection connection = new SqliteConnection(connectionString);
+            var connection = new SqliteConnection(connectionString);
             connection.Open();
 
             services.AddDbContext<LoanCalculatorContext>(options =>
@@ -21,10 +23,10 @@ namespace LoanManager.Data.EFCore
             );
 
             // Make sure the database exists
-            DbContextOptionsBuilder<LoanCalculatorContext> builder = new DbContextOptionsBuilder<LoanCalculatorContext>();
+            var builder = new DbContextOptionsBuilder<LoanCalculatorContext>();
             builder.UseSqlite(connection);
 
-            using (LoanCalculatorContext context = new LoanCalculatorContext(builder.Options))
+            using (var context = new LoanCalculatorContext(builder.Options))
             {
                 context.Database.EnsureCreated();
             }

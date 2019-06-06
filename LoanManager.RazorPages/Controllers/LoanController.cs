@@ -1,12 +1,16 @@
 ﻿using LoanManager.Core.DataInterface;
+using LoanManager.Core.Domain;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 
 namespace LoanManager.RazorPages.Controllers
 {
     public class LoanController : Controller
     {
-        private readonly ILoanApplicationResultRepository repo;
+        private ILoanApplicationResultRepository repo;
 
         public LoanController(ILoanApplicationResultRepository repo)
         {
@@ -17,16 +21,14 @@ namespace LoanManager.RazorPages.Controllers
         public IActionResult Index(int start, int length = 2)
         {
 
-            System.Collections.Generic.List<Core.Domain.LoanApplicationResult> loanResults = repo.GetLoanApplicationResults();
-            int totalRecords = loanResults.Count;
+            var loanResults = this.repo.GetLoanApplicationResults();
+            var totalRecords = loanResults.Count;
 
-            System.Collections.Generic.List<Core.Domain.LoanApplicationResult> filteredLoanResults = loanResults.Skip(start).Take(length).ToList();
+            var filteredLoanResults = loanResults.Skip(start).Take(length).ToList();
 
-            var response = new
-            {
+            var response = new {
                 recordsFiltered = totalRecords,
-                recordsTotal = totalRecords,
-                data = filteredLoanResults
+                recordsTotal = totalRecords, data = filteredLoanResults
             };
 
             return Ok(response);
@@ -35,7 +37,7 @@ namespace LoanManager.RazorPages.Controllers
         [HttpGet("loans/{id}")]
         public IActionResult Index(int id)
         {
-            Core.Domain.LoanApplicationResult loan = repo.GetLoan(id);
+            var loan = this.repo.GetLoan(id);
             return View(loan);
         }
     }
