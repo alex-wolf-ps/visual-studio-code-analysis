@@ -36,42 +36,27 @@ namespace LoanManager.Core.Services
             }
 
             // Determine interest rate
-            double interestRate = this.DetermineInterestRate(application);
-
-            // Determine monthly payment
-            double monthlyPayment = CalculateLoanPayment(loanAmount: application.LoanAmount,
-                termYears: application.Term.Years, interestRate: interestRate);
-
-            return LoanApplicationResult.CreateApprovedResult(application, interestRate, monthlyPayment);
-        }
-
-        public double DetermineInterestRate(LoanApplication application)
-        {
             double interestRate;
             double creditScore = application.CreditScore;
             LoanRate rate = _loanRates.FirstOrDefault(r =>
                 creditScore >= r.LowerCreditScore
                 && creditScore <= r.UpperCreditScore);
 
-            interestRate = rate.InterestRate;
+interestRate = rate.InterestRate;
 
-            if (application.ApplicantType.ToLower() == "premiere")
-            {
-                interestRate = rate.InterestRate - .01;
-            }
+if (application.ApplicantType.ToLower() == "premiere") {
+    interestRate = rate.InterestRate - .01;
+}
 
-            return interestRate;
-        }
-
-        internal double CalculateLoanPayment(double loanAmount, int termYears, double interestRate)
-        {
-            int totalPayments = termYears * 12;
+            // Determine monthly payment
+            int totalPayments = application.Term.Years * 12;
             double monthlyInterest = interestRate / 12.0;
             double discountFactor = ((Math.Pow((1 + monthlyInterest), totalPayments)) - 1.0) /
                 (monthlyInterest * Math.Pow((1 + monthlyInterest), totalPayments));
 
-            double monthlyPayment = Math.Round(loanAmount / discountFactor, 2);
-            return monthlyPayment;
+            double monthlyPayment = Math.Round(application.LoanAmount / discountFactor, 2);
+
+            return LoanApplicationResult.CreateApprovedResult(application, interestRate, monthlyPayment);
         }
     }
 }
